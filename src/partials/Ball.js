@@ -1,5 +1,4 @@
 import { SVG_NS } from '../settings';
-import { restElement } from '@babel/types';
 
 export default class Ball {
     constructor(radius, boardWidth, boardHeight) {
@@ -11,7 +10,7 @@ export default class Ball {
     }
 
     ballMove() {
-        this.x -= this.vx;
+        this.x += this.vx;
         this.y += this.vy;
     }
     reset() {
@@ -25,6 +24,14 @@ export default class Ball {
     }
 
     wallCollision() {
+        const hitTop = (this.y - this.radius <= 0);
+        const hitBottom = (this.y + this.radius >= this.boardHeight);
+        if (hitTop || hitBottom) {
+            this.vy = this.vy * -1;
+        }
+    }
+
+    paddleCollision() {
 
     }
 
