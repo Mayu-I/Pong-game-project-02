@@ -14,7 +14,7 @@ export default class Game {
     const paddleX1 = this.width - PADDLE_GAP - PADDLE_WIDTH;
     this.paddle1 = new Paddle(this.height, PADDLE_WIDTH, PADDLE_HEIGHT, paddleX1, paddleY, PADDLE_SPEED, KEYS.p1Up, KEYS.p1Down);
     this.paddle2 = new Paddle(this.height, PADDLE_WIDTH, PADDLE_HEIGHT, PADDLE_GAP, paddleY, PADDLE_SPEED, KEYS.p2Up, KEYS.p2Down);
-    this.ball = new Ball(BALL_RADIUS, this.width, this.height);
+    this.ball = new Ball(BALL_RADIUS, this.width, this.height, PADDLE_GAP, PADDLE_WIDTH);
 
     // Other code goes here...
   }
@@ -31,7 +31,7 @@ export default class Game {
     this.board.render(svg);
     this.paddle1.render(svg);
     this.paddle2.render(svg);
-    this.ball.render(svg);
+    this.ball.render(svg, this.paddle1, this.paddle2);
   }
 }
 
