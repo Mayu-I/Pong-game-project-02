@@ -1,13 +1,13 @@
-import { SVG_NS } from '../settings';
+import { SVG_NS, PADDLE_SPEED } from '../settings';
 
 export default class Paddle {
-    constructor(boardHeight, width, height, x, y, speed, upKey, downKey) {
+    constructor(boardHeight, width, height, x, y, upKey, downKey) {
         this.boardHeight = boardHeight;
         this.width = width;
         this.height = height;
         this.x = x;
         this.y = y;
-        this.speed = speed;
+        this.speed = PADDLE_SPEED;
         this.score = 0;
         this.maxNum = this.boardHeight - this.height;
         this.minNum = 0;
@@ -28,6 +28,15 @@ export default class Paddle {
     }
     moveDown() {
         this.y = Math.min(this.maxNum, this.y + this.speed)
+    }
+    increaseScore() {
+        this.score += 1;
+    }
+    getScore() {
+        return this.score;
+    }
+    setSpeed(speed) {
+        this.speed = speed;
     }
     getCoordinates() {
         return {

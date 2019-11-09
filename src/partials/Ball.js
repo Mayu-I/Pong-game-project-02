@@ -1,13 +1,16 @@
 import { SVG_NS } from '../settings';
+import PingSound from '../../public/sounds/pong-01.wav';
 
 export default class Ball {
-    constructor(radius, boardWidth, boardHeight, paddleGap, paddleWidth) {
+    constructor(radius, boardWidth, boardHeight, paddleGap, paddleWidth, color) {
         this.radius = radius;
         this.boardWidth = boardWidth;
         this.boardHeight = boardHeight;
         this.paddleGap = paddleGap;
         this.paddleWidth = paddleWidth;
+        this.color = color;
         this.direction = 1;
+        this.sound1 = new Audio(PingSound);
         this.reset();
     }
 
@@ -25,7 +28,7 @@ export default class Ball {
         this.vx = this.direction * (6 - Math.abs(this.vy));
     }
 
-    wallCollision() {
+    wallCollision(paddle1, paddle2) {
         const hitTop = (this.y - this.radius <= 0);
         const hitBottom = (this.y + this.radius >= this.boardHeight);
         const hitLeft = (this.x + this.radius < 0);
@@ -34,12 +37,12 @@ export default class Ball {
             this.vy = this.vy * -1;
         }
         if (hitLeft) {
-            console.log("hit wall");
             this.direction = 1;
+            paddle1.increaseScore();
             this.reset();
         } else if (hitRight) {
-            console.log("hit wall");
             this.direction = -1;
+            paddle2.increaseScore();
             this.reset();
         }
     }
@@ -49,7 +52,6 @@ export default class Ball {
         if (this.direction === 1) {
             const p1Walls = paddle1.getCoordinates();
             hitWall = (this.x + this.radius >= p1Walls.left && this.x + this.radius <= p1Walls.right);
-
             checkTop = (this.y - this.radius >= p1Walls.top);
             checkBottom = (this.y + this.radius <= p1Walls.bottom);
         } else {
@@ -59,21 +61,22 @@ export default class Ball {
             checkBottom = (this.y + this.radius <= p2Walls.bottom);
         }
         if (hitWall && checkTop && checkBottom) {
+            this.sound1.play();
             this.vx = this.vx * -1;
-            this.direction = this.direction * -1;
+            // this.direction = this.direction * -1;
         }
-    }
 
+    }
 
     render(svg, paddle1, paddle2) {
         const circle = document.createElementNS(SVG_NS, "circle");
         circle.setAttributeNS(null, "r", this.radius);
         circle.setAttributeNS(null, "cx", this.x);
         circle.setAttributeNS(null, "cy", this.y);
-        circle.setAttributeNS(null, "fill", "#ffffff");
+        circle.setAttributeNS(null, "fill", this.color);
         svg.appendChild(circle);
         this.ballMove();
-        this.wallCollision();
+        this.wallCollision(paddle1, paddle2);
         this.paddleCollision(paddle1, paddle2);
     }
 
