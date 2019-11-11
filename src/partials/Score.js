@@ -1,9 +1,9 @@
 import { SVG_NS } from '../settings';
 
 export default class Score {
-    constructor(x, size) {
+    constructor(x, y, size) {
         this.x = x;
-        this.y = 50;
+        this.y = y;
         this.size = size;
     }
     render(svg, score) {
@@ -16,8 +16,4 @@ export default class Score {
         svg.appendChild(scoreText);
     }
 }
-
-
-
-
 
