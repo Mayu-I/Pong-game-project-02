@@ -5,17 +5,22 @@ export const BOARD_HEIGHT = 216;
 
 export const PADDLE_WIDTH = 8;
 export const PADDLE_HEIGHT = 56;
-export const PADDLE_GAP = 30;
+export const PADDLE_GAP = 10;
 export const PADDLE_SPEED = 20;
 
 export const BALL_RADIUS = 8;
+
+export const SHOT_WIDTH = 8;
+export const SHOT_HEIGHT = 2;
 
 export const SCORE_FONT = 30;
 
 export const KEYS = {
     p1Up: "ArrowUp",
     p1Down: "ArrowDown",
+    p1Fire: "ArrowLeft",
     p2Up: "w",
     p2Down: "s",
+    p2Fire: "d",
     pause: " ",
 }

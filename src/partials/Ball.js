@@ -18,14 +18,15 @@ export default class Ball {
         this.x += this.vx;
         this.y += this.vy;
     }
+
     reset() {
         this.x = this.boardWidth / 2;
         this.y = this.boardHeight / 2;
         this.vy = 0;
         while (this.vy === 0) {
-            this.vy = Math.floor(Math.random() * 10 - 5);
+            this.vy = Math.floor(Math.random() * (Math.random() * 10) - 5);
         }
-        this.vx = this.direction * (6 - Math.abs(this.vy));
+        this.vx = this.direction * (8 - Math.abs(this.vy));
     }
 
     wallCollision(paddle1, paddle2) {
@@ -51,19 +52,18 @@ export default class Ball {
         let hitWall = false, checkTop = false, checkBottom = false;
         if (this.direction === 1) {
             const p1Walls = paddle1.getCoordinates();
-            hitWall = (this.x + this.radius >= p1Walls.left && this.x + this.radius <= p1Walls.right);
+            hitWall = (this.x >= p1Walls.left && this.x + this.radius <= p1Walls.right);
             checkTop = (this.y - this.radius >= p1Walls.top);
             checkBottom = (this.y + this.radius <= p1Walls.bottom);
         } else {
             const p2Walls = paddle2.getCoordinates();
-            hitWall = (this.x - this.radius <= p2Walls.right && this.x - this.radius >= p2Walls.left);
+            hitWall = (this.x <= p2Walls.right && this.x - this.radius >= p2Walls.left);
             checkTop = (this.y - this.radius >= p2Walls.top);
             checkBottom = (this.y + this.radius <= p2Walls.bottom);
         }
         if (hitWall && checkTop && checkBottom) {
             this.sound1.play();
             this.vx = this.vx * -1;
-            // this.direction = this.direction * -1;
         }
 
     }
