@@ -32,6 +32,9 @@ export default class Paddle {
     }
     fireKey() {
     }
+    resetScore() {
+        this.score = 0;
+    }
     increaseScore() {
         this.score += 1;
     }

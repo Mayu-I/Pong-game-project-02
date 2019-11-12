@@ -26,7 +26,7 @@ export default class Ball {
         while (this.vy === 0) {
             this.vy = Math.floor(Math.random() * (Math.random() * 10) - 5);
         }
-        this.vx = this.direction * (6 + Math.floor((Math.random() * 3)) - Math.abs(this.vy));
+        this.vx = this.direction * (6 + Math.floor((Math.random() * 2)) - Math.abs(this.vy));
     }
 
     wallCollision(paddle1, paddle2) {

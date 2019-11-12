@@ -1,4 +1,4 @@
-import { SVG_NS, PADDLE_HEIGHT, PADDLE_WIDTH, PADDLE_GAP, PADDLE_SPEED, KEYS, BALL_RADIUS, SCORE_FONT, SCORE_Y, WINNER_FONT } from '../settings';
+import { SVG_NS, PADDLE_HEIGHT, PADDLE_WIDTH, PADDLE_GAP, PADDLE_SPEED, KEYS, BALL_RADIUS1, BALL_RADIUS2, SCORE_FONT, SCORE_Y, WINNER_FONT } from '../settings';
 import Board from './Board';
 import Paddle from './Paddle';
 import Ball from './Ball';
@@ -21,8 +21,8 @@ export default class Game {
     this.paddle1 = new Paddle(this.height, PADDLE_WIDTH, PADDLE_HEIGHT, paddleX1, paddleY, KEYS.p1Up, KEYS.p1Down, KEYS.p1Fire);
     this.paddle2 = new Paddle(this.height, PADDLE_WIDTH, PADDLE_HEIGHT, PADDLE_GAP, paddleY, KEYS.p2Up, KEYS.p2Down, KEYS.p2Fire);
 
-    this.ball1 = new Ball(BALL_RADIUS, this.width, this.height, PADDLE_GAP, PADDLE_WIDTH, "#5F45ED");
-    this.ball2 = new Ball(BALL_RADIUS, this.width, this.height, PADDLE_GAP, PADDLE_WIDTH, "#FCDA4B");
+    this.ball1 = new Ball(BALL_RADIUS1, this.width, this.height, PADDLE_GAP, PADDLE_WIDTH, "#5F45ED");
+    this.ball2 = new Ball(BALL_RADIUS2, this.width, this.height, PADDLE_GAP, PADDLE_WIDTH, "#FCDA4B");
     this.paused = false;
 
     this.score1 = new Score(this.width / 2 + 35, SCORE_Y, SCORE_FONT);
@@ -40,23 +40,13 @@ export default class Game {
     });
   }
 
-  restart() {
-    this.paddle1.score = 0;
-    this.paddle2.score = 0;
-    this.ball1.reset();
-    this.ball2.reset();
-    return;
-  }
+
 
   render() {
     if (this.paused) {
       this.paddle1.setSpeed(0);
       this.paddle2.setSpeed(0);
       return;
-    }
-
-    if (this.paddle1.getScore() >= 5 || this.paddle2.getScore() >= 5) {
-      setTimeout(this.gameOver, 3000);
     }
 
     this.gameElement.innerHTML = '';
