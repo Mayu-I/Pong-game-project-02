@@ -31,7 +31,6 @@ export default class Paddle {
         this.y = Math.min(this.maxNum, this.y + this.speed)
     }
     fireKey() {
-
     }
     increaseScore() {
         this.score += 1;
