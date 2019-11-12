@@ -16,13 +16,13 @@ export default class Game {
     this.board = new Board(this.width, this.height);
 
     const paddleY = (this.height - PADDLE_HEIGHT) / 2;
-
     const paddleX1 = this.width - PADDLE_GAP - PADDLE_WIDTH;
+
     this.paddle1 = new Paddle(this.height, PADDLE_WIDTH, PADDLE_HEIGHT, paddleX1, paddleY, KEYS.p1Up, KEYS.p1Down, KEYS.p1Fire);
     this.paddle2 = new Paddle(this.height, PADDLE_WIDTH, PADDLE_HEIGHT, PADDLE_GAP, paddleY, KEYS.p2Up, KEYS.p2Down, KEYS.p2Fire);
 
-    this.ball1 = new Ball(BALL_RADIUS, this.width, this.height, PADDLE_GAP, PADDLE_WIDTH, "#EC47AA");
-    this.ball2 = new Ball(BALL_RADIUS, this.width, this.height, PADDLE_GAP, PADDLE_WIDTH, "#72F453");
+    this.ball1 = new Ball(BALL_RADIUS, this.width, this.height, PADDLE_GAP, PADDLE_WIDTH, "#5F45ED");
+    this.ball2 = new Ball(BALL_RADIUS, this.width, this.height, PADDLE_GAP, PADDLE_WIDTH, "#FCDA4B");
     this.paused = false;
 
     this.score1 = new Score(this.width / 2 + 35, SCORE_Y, SCORE_FONT);
@@ -38,9 +38,14 @@ export default class Game {
         this.paused = !this.paused;
       }
     });
+  }
 
-
-    // Other code goes here...
+  restart() {
+    this.paddle1.score = 0;
+    this.paddle2.score = 0;
+    this.ball1.reset();
+    this.ball2.reset();
+    return;
   }
 
   render() {
@@ -49,6 +54,11 @@ export default class Game {
       this.paddle2.setSpeed(0);
       return;
     }
+
+    if (this.paddle1.getScore() >= 5 || this.paddle2.getScore() >= 5) {
+      setTimeout(this.gameOver, 3000);
+    }
+
     this.gameElement.innerHTML = '';
 
     let svg = document.createElementNS(SVG_NS, "svg");

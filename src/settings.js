@@ -6,9 +6,9 @@ export const BOARD_HEIGHT = 216;
 export const PADDLE_WIDTH = 5 + Math.floor(Math.random() * 11);
 export const PADDLE_HEIGHT = 50 + Math.floor(Math.random() * 21);
 export const PADDLE_GAP = 10;
-export const PADDLE_SPEED = 15 + Math.floor(Math.random() * 11);
+export const PADDLE_SPEED = 25 + Math.floor(Math.random() * 11);
 
-export const BALL_RADIUS = 8;
+export const BALL_RADIUS = 8 + Math.floor(Math.random() * 5);
 
 export const SHOT_WIDTH = 8;
 export const SHOT_HEIGHT = 2;

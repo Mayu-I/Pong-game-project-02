@@ -14,6 +14,5 @@ export default class Shot {
         shot.setAttributeNS(null, "fill", "#ffffff");
 
         svg.appendChild(shot);
-
     }
 }

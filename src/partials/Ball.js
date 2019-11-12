@@ -32,8 +32,8 @@ export default class Ball {
     wallCollision(paddle1, paddle2) {
         const hitTop = (this.y - this.radius <= 0);
         const hitBottom = (this.y + this.radius >= this.boardHeight);
-        const hitLeft = (this.x + this.radius < 0);
-        const hitRight = (this.x - this.radius > this.boardWidth);
+        const hitLeft = (this.x - this.radius < 0);
+        const hitRight = (this.x + this.radius > this.boardWidth);
         if (hitTop || hitBottom) {
             this.vy = this.vy * -1;
         }
@@ -50,7 +50,7 @@ export default class Ball {
 
     paddleCollision(paddle1, paddle2) {
         let hitWall = false, checkTop = false, checkBottom = false;
-        if (this.direction === 1) {
+        if (this.vx > 0) {
             const p1Walls = paddle1.getCoordinates();
             hitWall = (this.x + this.radius >= p1Walls.left && this.x + this.radius <= p1Walls.right);
             checkTop = (this.y - this.radius >= p1Walls.top);

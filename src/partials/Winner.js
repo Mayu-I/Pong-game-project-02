@@ -19,7 +19,6 @@ export default class Winner {
         if (score >= 5) {
             winnerText.style.display = "block";
         }
-
         svg.appendChild(winnerText);
     }
 }
