@@ -6,7 +6,7 @@ export const BOARD_HEIGHT = 216;
 export const PADDLE_WIDTH = 8 + Math.floor(Math.random() * 11);
 export const PADDLE_HEIGHT = 50 + Math.floor(Math.random() * 21);
 export const PADDLE_GAP = 10;
-export const PADDLE_SPEED = 30 + Math.floor(Math.random() * 11);
+export const PADDLE_SPEED = 10 + Math.floor(Math.random() * 11);
 
 export const BALL_RADIUS1 = 6 + Math.floor(Math.random() * 5);
 export const BALL_RADIUS2 = 6 + Math.floor(Math.random() * 5);
@@ -28,4 +28,5 @@ export const KEYS = {
     p2Down: "s",
     p2Fire: "d",
     pause: " ",
+    restart: "r"
 }

@@ -11,27 +11,48 @@ export default class Paddle {
         this.score = 0;
         this.maxNum = this.boardHeight - this.height;
         this.minNum = 0;
-        document.addEventListener("keydown", event => {
+        document.addEventListener("keydown", (event) => {
             switch (event.key) {
                 case upKey:
-                    this.moveUp();
+                    this.isMoveUp = true;
                     break;
                 case downKey:
-                    this.moveDown();
+                    this.isMoveDown = true;
                     break;
                 case fireKey:
-                    this.shotFire();
-            }
+                    this.isShotFire = true;
+                    break;
+            };
         });
+        document.addEventListener("keyup", (event) => {
+            switch (event.key) {
+                case upKey:
+                    this.isMoveUp = false;
+                    break;
+                case downKey:
+                    this.isMoveDown = false;
+                    break;
+                case fireKey:
+                    this.isShotFire = false;
+                    break;
+            };
+        });
+
     }
+
     moveUp() {
-        this.y = Math.max(this.minNum, this.y - this.speed)
+        if (this.isMoveUp) {
+            this.y = Math.max(this.minNum, this.y - this.speed)
+        }
     }
     moveDown() {
-        this.y = Math.min(this.maxNum, this.y + this.speed)
+        if (this.isMoveDown) {
+            this.y = Math.min(this.maxNum, this.y + this.speed)
+        }
     }
-    fireKey() {
-    }
+
+    // fireKey() {
+    // }
     resetScore() {
         this.score = 0;
     }
@@ -59,7 +80,8 @@ export default class Paddle {
         paddle.setAttributeNS(null, "x", this.x);
         paddle.setAttributeNS(null, "y", this.y);
         paddle.setAttributeNS(null, "fill", "#ffffff");
-
+        this.moveUp();
+        this.moveDown();
         svg.appendChild(paddle);
     }
 

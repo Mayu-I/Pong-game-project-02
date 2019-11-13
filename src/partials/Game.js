@@ -1,4 +1,4 @@
-import { SVG_NS, PADDLE_HEIGHT, PADDLE_WIDTH, PADDLE_GAP, PADDLE_SPEED, KEYS, BALL_RADIUS1, BALL_RADIUS2, SCORE_FONT, SCORE_Y, WINNER_FONT } from '../settings';
+import { SVG_NS, PADDLE_HEIGHT, PADDLE_WIDTH, PADDLE_GAP, PADDLE_SPEED, KEYS, BALL_RADIUS1, BALL_RADIUS2, SCORE_FONT, SCORE_Y, WINNER_FONT, SHOT_WIDTH, SHOT_HEIGHT } from '../settings';
 import Board from './Board';
 import Paddle from './Paddle';
 import Ball from './Ball';
@@ -28,6 +28,9 @@ export default class Game {
     this.score1 = new Score(this.width / 2 + 35, SCORE_Y, SCORE_FONT);
     this.score2 = new Score(this.width / 2 - 60, SCORE_Y, SCORE_FONT);
 
+
+    this.shot = new Shot(SHOT_WIDTH, SHOT_HEIGHT);
+
     this.winner1 = new Winner(this.width / 2 + 85, (this.height + 35) / 2, WINNER_FONT);
     this.winner2 = new Winner((this.width / 2) - (85 * 2), (this.height + 35) / 2, WINNER_FONT);
 
@@ -36,17 +39,28 @@ export default class Game {
         this.paddle1.setSpeed(PADDLE_SPEED);
         this.paddle2.setSpeed(PADDLE_SPEED);
         this.paused = !this.paused;
+      } else if (event.key === KEYS.restart) {
+        this.paused = false;
+        this.paddle1.setSpeed(PADDLE_SPEED);
+        this.paddle2.setSpeed(PADDLE_SPEED);
+        this.paddle1.resetScore();
+        this.paddle2.resetScore();
+        this.ball1.reset();
+        this.ball2.reset();
       }
     });
   }
-
-
 
   render() {
     if (this.paused) {
       this.paddle1.setSpeed(0);
       this.paddle2.setSpeed(0);
       return;
+    }
+
+
+    if (this.paddle1.getScore() >= 5 || this.paddle2.getScore() >= 5) {
+      this.paused = !this.paused;
     }
 
     this.gameElement.innerHTML = '';
@@ -66,6 +80,10 @@ export default class Game {
     this.score2.render(svg, this.paddle2.getScore());
     this.winner1.render(svg, this.paddle1.getScore());
     this.winner2.render(svg, this.paddle2.getScore());
+    document.addEventListener("keydown", (event) => {
+      if (event.key === KEYS.p1Fire || event.key === KEYS.p2Fire) {
+        this.shot.render(svg);
+      }
+    });
   }
 }
-
