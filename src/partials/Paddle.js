@@ -1,4 +1,4 @@
-import { SVG_NS, PADDLE_SPEED } from '../settings';
+import { SVG_NS, PADDLE_SPEED, PADDLE_Y } from '../settings';
 
 export default class Paddle {
     constructor(boardHeight, width, height, x, y, upKey, downKey, fireKey) {
@@ -19,9 +19,6 @@ export default class Paddle {
                 case downKey:
                     this.isMoveDown = true;
                     break;
-                case fireKey:
-                    this.isShotFire = true;
-                    break;
             };
         });
         document.addEventListener("keyup", (event) => {
@@ -31,9 +28,6 @@ export default class Paddle {
                     break;
                 case downKey:
                     this.isMoveDown = false;
-                    break;
-                case fireKey:
-                    this.isShotFire = false;
                     break;
             };
         });
@@ -50,14 +44,15 @@ export default class Paddle {
             this.y = Math.min(this.maxNum, this.y + this.speed)
         }
     }
-
-    // fireKey() {
-    // }
-    resetScore() {
+    reset() {
         this.score = 0;
+        this.y = PADDLE_Y;
     }
     increaseScore() {
         this.score += 1;
+    }
+    decreaseScore() {
+        this.score -= 1;
     }
     getScore() {
         return this.score;
