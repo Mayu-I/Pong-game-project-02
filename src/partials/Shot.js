@@ -11,14 +11,18 @@ export default class Shot {
         this.speed = 5;
         this.sound = new Audio(FireSound);
         this.fired = false;
-        this.reset()
     }
 
     shotMove() {
         this.x += (this.speed * this.direction);
     }
 
-    reset(paddle1, paddle2) {
+    // reset(paddle) {
+    //     this.x = p1Walls.left - this.width * 2;
+    //     this.y = (p1Walls.bottom + p1Walls.top) / 2;
+    // }
+
+    fire(paddle1, paddle2) {
         if (this.direction === -1) {
             const p1Walls = paddle1.getCoordinates();
             this.x = p1Walls.left - this.width * 2;
@@ -28,6 +32,7 @@ export default class Shot {
             this.x = p2Walls.right + this.width;
             this.y = (p2Walls.bottom + p2Walls.top) / 2;
         };
+        this.fired = true;
     }
 
     isFired() {
