@@ -1,41 +1,36 @@
-# Pong Game Starter
+# Fun Fun Pong Game⭐️
 
-A starter project for a basic pong game using SVGs.
+A pong game for a second project
 
-## Setup
+## DEMO
 
-Ensure you have [Node.js](https://nodejs.org/en/) installed first.
+## Features
+You can play with two players.
 
-**Install dependencies:**
+First to get 10 points wins. 
 
-`$ npm install`
+You can reduce another player's points by shooting fire.
 
-**Run locally with the Parcel dev server:**
+Ball's size are changing every time balls are made.
 
-`$ npm start`
+## How to play
 
-Once you run the start command you can access your project at http://localhost:3000.
+	- 'r' key restarts game
 
-Read more about the [Parcel web application bundler here](https://parceljs.org/).
+	- 'space' key pauses game
+  
+Left Player :
+      
+	- 'w' key moves the paddle upside
 
-## Deploy
+	- 's' key moves the paddle downside
+  
+	- 'd' key shots fire
+      
+Right player :
 
-The deployment workflow for this project will be a bit different from what you've used when deploying simple static websites.
+	- 'UP Arrow' key moves the paddle upside
 
-To deploy your finished Pong project as a GitHub page, you must first **update the `predeploy` script in the `package.json` file with the name of your repo.**
-
-For example, if your repo URL is:
-
-https://github.com/bob/pong-project
-
-Update the `predeploy` script as follows:
-
-```json
-"predeploy": "rm -rf dist && parcel build index.html --public-url /pong-project",
-```
-
-Once you have done this, you can run:
-
-`$ npm run deploy`
-
-Now check out your deployed site 🙂
+	- 'DOWN Arrow' key moves the paddle downside
+  
+	- 'LEFT Arrow' key shots fire
