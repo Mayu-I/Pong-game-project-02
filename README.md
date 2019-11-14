@@ -6,13 +6,13 @@ A pong game for a second webdev project
 
 ## Features
 
-Two players can play.
+- Two players can play.
 
-First to get 10 points wins. 
+- First to get 10 points wins. 
 
-You can reduce another player's points by shooting fire.
+- You can reduce another player's points by shooting fire.
 
-Ball's size are changing every time balls are made.
+- Ball's size are changing every time balls are made.
 
 ## How to play
 
