@@ -12,7 +12,7 @@ export default class Board {
         rect.setAttributeNS(null, "x", 0);
         rect.setAttributeNS(null, "y", 0);
         rect.setAttributeNS(null, "stroke", BOARD_STROKE);
-        rect.setAttributeNS(null, "stroke-width", 3);
+        rect.setAttributeNS(null, "stroke-width", 5);
         rect.setAttributeNS(null, "fill", BOARD_COLOR);
 
         const line = document.createElementNS(SVG_NS, "line");

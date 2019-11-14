@@ -1,4 +1,4 @@
-import { SVG_NS, PADDLE_HEIGHT, PADDLE_Y, PADDLE_WIDTH, PADDLE_GAP, PADDLE_SPEED, KEYS, SCORE_FONT, SCORE_Y, WINNER_FONT, SHOT_WIDTH, SHOT_HEIGHT } from '../settings';
+import { SVG_NS, PADDLE_HEIGHT, PADDLE_Y, PADDLE_WIDTH, PADDLE_GAP, PADDLE_SPEED, KEYS, SCORE_FONT, SCORE_Y, WINNER_FONT, WINNER_SCORE, SHOT_WIDTH, SHOT_HEIGHT } from '../settings';
 import Board from './Board';
 import Paddle from './Paddle';
 import Ball from './Ball';
@@ -12,6 +12,7 @@ export default class Game {
     this.element = element;
     this.width = width;
     this.height = height;
+    this.winnerScore = WINNER_SCORE;
     this.gameElement = document.getElementById(this.element);
     this.bgElement = document.getElementById(this.bg);
     this.board = new Board(this.width, this.height);
@@ -19,8 +20,8 @@ export default class Game {
     this.paddle1 = new Paddle(this.height, PADDLE_WIDTH, PADDLE_HEIGHT, this.width - PADDLE_GAP - PADDLE_WIDTH, PADDLE_Y, KEYS.p1Up, KEYS.p1Down, KEYS.p1Shot);
     this.paddle2 = new Paddle(this.height, PADDLE_WIDTH, PADDLE_HEIGHT, PADDLE_GAP, PADDLE_Y, KEYS.p2Up, KEYS.p2Down, KEYS.p2Shot);
 
-    this.ball1 = new Ball(this.width, this.height, PADDLE_GAP, PADDLE_WIDTH, "#5F45ED");
-    this.ball2 = new Ball(this.width, this.height, PADDLE_GAP, PADDLE_WIDTH, "#FCDA4B");
+    this.ball1 = new Ball(this.width, this.height, PADDLE_GAP, PADDLE_WIDTH, "#D63D8B");
+    this.ball2 = new Ball(this.width, this.height, PADDLE_GAP, PADDLE_WIDTH, "#1E3AD2");
     this.paused = false;
 
     this.score1 = new Score(this.width / 2 + 35, SCORE_Y, SCORE_FONT);
@@ -30,8 +31,8 @@ export default class Game {
     this.shot2 = new Shot(this.width, SHOT_WIDTH, SHOT_HEIGHT, 1, KEYS.p1Shot, KEYS.p2Shot);
     this.shotSound = new Audio(FireSound);
 
-    this.winner1 = new Winner(this.width / 2 + 85, (this.height + 35) / 2, WINNER_FONT);
-    this.winner2 = new Winner((this.width / 2) - (85 * 2), (this.height + 35) / 2, WINNER_FONT);
+    this.winner1 = new Winner(this.width / 2 + 85, (this.height + 35) / 2, WINNER_FONT, WINNER_SCORE);
+    this.winner2 = new Winner((this.width / 2) - (85 * 2), (this.height + 35) / 2, WINNER_FONT, WINNER_SCORE);
 
     document.addEventListener("keydown", (event) => {
       if (event.key === KEYS.pause) {
@@ -65,7 +66,7 @@ export default class Game {
       return;
     }
 
-    if (this.paddle1.getScore() >= 10 || this.paddle2.getScore() >= 10) {
+    if (this.paddle1.getScore() >= this.winnerScore || this.paddle2.getScore() >= this.winnerScore) {
       this.paused = !this.paused;
     }
 
@@ -85,7 +86,7 @@ export default class Game {
     this.ball1.render(svg, this.paddle1, this.paddle2);
 
     /* make second ball after get 2 points*/
-    if (this.paddle1.getScore() >= 5 || this.paddle2.getScore() >= 5) {
+    if (this.paddle1.getScore() >= this.winnerScore / 2 || this.paddle2.getScore() >= this.winnerScore / 2) {
       this.ball2.render(svg, this.paddle1, this.paddle2);
     }
 
