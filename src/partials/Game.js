@@ -12,6 +12,7 @@ export default class Game {
     this.element = element;
     this.width = width;
     this.height = height;
+    this.winnerScore = WINNER_SCORE;
     this.gameElement = document.getElementById(this.element);
     this.bgElement = document.getElementById(this.bg);
     this.board = new Board(this.width, this.height);
@@ -65,7 +66,7 @@ export default class Game {
       return;
     }
 
-    if (this.paddle1.getScore() >= 10 || this.paddle2.getScore() >= 10) {
+    if (this.paddle1.getScore() >= this.winnerScore || this.paddle2.getScore() >= this.winnerScore) {
       this.paused = !this.paused;
     }
 
@@ -85,7 +86,7 @@ export default class Game {
     this.ball1.render(svg, this.paddle1, this.paddle2);
 
     /* make second ball after get 2 points*/
-    if (this.paddle1.getScore() >= 5 || this.paddle2.getScore() >= 5) {
+    if (this.paddle1.getScore() >= this.winnerScore / 2 || this.paddle2.getScore() >= this.winnerScore / 2) {
       this.ball2.render(svg, this.paddle1, this.paddle2);
     }
 

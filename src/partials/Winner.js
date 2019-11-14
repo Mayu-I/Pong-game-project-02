@@ -10,6 +10,18 @@ export default class Winner {
         this.sound = new Audio(WinSound);
     }
 
+    /*
+winScore() {
+    const scoreBtn = document.querySelector('.scoreBtn');
+    const scoreNum = document.querySelector('.score').value;
+    const finalScore = document.querySelector('.finalScore');
+    scoreBtn.addEventListener("click", function () {
+        finalScore.innerHTML = scoreNum;
+        // console.log(scoreNum);
+        return scoreNum;
+    });
+}
+*/
 
     render(svg, score) {
         const winnerText = document.createElementNS(SVG_NS, "text");
