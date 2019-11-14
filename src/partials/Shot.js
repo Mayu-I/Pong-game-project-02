@@ -84,7 +84,7 @@ export default class Shot {
         shot.setAttributeNS(null, "height", this.height);
         shot.setAttributeNS(null, "x", this.x);
         shot.setAttributeNS(null, "y", this.y);
-        shot.setAttributeNS(null, "fill", "#ffffff");
+        shot.setAttributeNS(null, "fill", "#FCDA4B");
         this.wallCollision();
         this.paddleAttack(paddle1, paddle2, score);
         svg.appendChild(shot);
