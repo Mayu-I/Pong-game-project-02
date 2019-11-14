@@ -1,5 +1,5 @@
 import { SVG_NS } from '../settings';
-import FireSound from '../../public/sounds/pong-04.wav';
+import FireSound from '../../public/sounds/pong-02.wav';
 
 export default class Shot {
     constructor(width, height, direction, shot1Key, shot2Key) {
@@ -19,10 +19,11 @@ export default class Shot {
         this.x += (this.speed * this.direction);
     }
 
-    // reset(paddle) {
-    //     this.x = p1Walls.left - this.width * 2;
-    //     this.y = (p1Walls.bottom + p1Walls.top) / 2;
-    // }
+    reset() {
+        this.fired = false;
+        this.x = 0;
+        this.y = 0;
+    }
 
     fire(paddle1, paddle2) {
         if (this.direction === -1) {
@@ -54,12 +55,15 @@ export default class Shot {
             checkTop = (this.y - this.height / 2 >= p2Walls.top);
             checkBottom = (this.y + this.height / 2 <= p2Walls.bottom);
         }
+
         if (hitLeft && checkTop && checkBottom) {
             this.sound.play();
             paddle1.decreaseScore();
+            this.reset();
         } else if (hitRight && checkTop && checkBottom) {
             this.sound.play();
             paddle2.decreaseScore();
+            this.reset();
         }
     }
 
@@ -70,7 +74,7 @@ export default class Shot {
         shot.setAttributeNS(null, "x", this.x);
         shot.setAttributeNS(null, "y", this.y);
         shot.setAttributeNS(null, "fill", "#ffffff");
-        // this.paddleAttack(paddle1, paddle2, score);
+        this.paddleAttack(paddle1, paddle2, score);
         svg.appendChild(shot);
         shot.style.display = "none";
         if (this.isFired()) {
