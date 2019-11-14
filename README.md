@@ -1,20 +1,23 @@
 # Fun Fun Pong Game⭐️
 
-A pong game for a second webdev project
+A pong game for a second webdev project!
 
 ## DEMO
 
+![Pong](https://user-images.githubusercontent.com/42310122/68905496-422a2080-06f6-11ea-96c3-f498405c8671.png)
+
+
 ## Features
 
-- Two players can play.
+- Two players can play👬.
 
-- First to get 10 points wins. 
+- First to get 10 points wins🙌. 
 
-- You can reduce another player's points by shooting fire.
+- You can reduce another player's points by shooting fire🔥.
 
-- Ball's size are changing every time balls are made.
+- Ball's size are changing every time balls are made🎾.
 
-- After any one of players reaches 5 points, number of balls are increased. 
+- After any one of players reached 5 points, number of balls are increased😲. 
 
 ## How to play
 
