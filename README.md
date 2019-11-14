@@ -14,6 +14,8 @@ A pong game for a second webdev project
 
 - Ball's size are changing every time balls are made.
 
+- After any one of players reaches 5 points, number of balls are increased. 
+
 ## How to play
 
 	 'r' key restarts game
