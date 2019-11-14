@@ -9,6 +9,8 @@ export default class Shot {
         this.shot1Key = shot1Key;
         this.shot2Key = shot2Key;
         this.speed = 5;
+        this.x = 0;
+        this.y = 0;
         this.sound = new Audio(FireSound);
         this.fired = false;
     }
@@ -39,27 +41,27 @@ export default class Shot {
         return this.fired;
     }
 
-    // paddleAttack(paddle1, paddle2) {
-    //     let hitLeft = false, hitRight = false, checkTop = false, checkBottom = false;
-    //     if (this.direction === 1) {
-    //         const p1Walls = paddle1.getCoordinates();
-    //         hitLeft = (this.x + this.width / 2 >= p1Walls.left);
-    //         checkTop = (this.y - this.height / 2 >= p1Walls.top);
-    //         checkBottom = (this.y + this.height / 2 <= p1Walls.bottom);
-    //     } else {
-    //         const p2Walls = paddle2.getCoordinates();
-    //         hitRight = (this.x - this.width / 2 <= p2Walls.right);
-    //         checkTop = (this.y - this.height / 2 >= p2Walls.top);
-    //         checkBottom = (this.y + this.height / 2 <= p2Walls.bottom);
-    //     }
-    //     if (hitLeft && checkTop && checkBottom) {
-    //         this.sound.play();
-    //         paddle1.decreaseScore();
-    //     } else if (hitRight && checkTop && checkBottom) {
-    //         this.sound.play();
-    //         paddle2.decreaseScore();
-    //     }
-    // }
+    paddleAttack(paddle1, paddle2) {
+        let hitLeft = false, hitRight = false, checkTop = false, checkBottom = false;
+        if (this.direction === 1) {
+            const p1Walls = paddle1.getCoordinates();
+            hitLeft = (this.x + this.width / 2 >= p1Walls.left);
+            checkTop = (this.y - this.height / 2 >= p1Walls.top);
+            checkBottom = (this.y + this.height / 2 <= p1Walls.bottom);
+        } else {
+            const p2Walls = paddle2.getCoordinates();
+            hitRight = (this.x - this.width / 2 <= p2Walls.right);
+            checkTop = (this.y - this.height / 2 >= p2Walls.top);
+            checkBottom = (this.y + this.height / 2 <= p2Walls.bottom);
+        }
+        if (hitLeft && checkTop && checkBottom) {
+            this.sound.play();
+            paddle1.decreaseScore();
+        } else if (hitRight && checkTop && checkBottom) {
+            this.sound.play();
+            paddle2.decreaseScore();
+        }
+    }
 
     render(svg, paddle1, paddle2, score) {
         const shot = document.createElementNS(SVG_NS, "rect");
@@ -70,8 +72,9 @@ export default class Shot {
         shot.setAttributeNS(null, "fill", "#ffffff");
         // this.paddleAttack(paddle1, paddle2, score);
         svg.appendChild(shot);
-
+        shot.style.display = "none";
         if (this.isFired()) {
+            shot.style.display = "block";
             this.shotMove();
         }
     }

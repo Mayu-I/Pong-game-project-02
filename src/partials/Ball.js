@@ -14,7 +14,6 @@ export default class Ball {
         this.reset();
     }
 
-
     ballMove() {
         this.x += this.vx;
         this.y += this.vy;

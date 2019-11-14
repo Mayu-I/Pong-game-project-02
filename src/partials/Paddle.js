@@ -1,7 +1,7 @@
 import { SVG_NS, PADDLE_SPEED, PADDLE_Y } from '../settings';
 
 export default class Paddle {
-    constructor(boardHeight, width, height, x, y, upKey, downKey, fireKey) {
+    constructor(boardHeight, width, height, x, y, upKey, downKey) {
         this.boardHeight = boardHeight;
         this.width = width;
         this.height = height;
@@ -31,7 +31,6 @@ export default class Paddle {
                     break;
             };
         });
-
     }
 
     moveUp() {
