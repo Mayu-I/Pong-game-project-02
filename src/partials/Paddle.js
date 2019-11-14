@@ -51,7 +51,9 @@ export default class Paddle {
         this.score += 1;
     }
     decreaseScore() {
+        // if (this.score > 0) {
         this.score -= 1;
+        // }
     }
     getScore() {
         return this.score;

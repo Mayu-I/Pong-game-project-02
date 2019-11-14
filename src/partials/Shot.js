@@ -12,20 +12,20 @@ export default class Shot {
         this.x = 0;
         this.y = 0;
         this.sound = new Audio(FireSound);
-        this.fired = false;
+        this.shooting = false;
     }
 
-    shotMove() {
+    fireMove() {
         this.x += (this.speed * this.direction);
     }
 
     reset() {
-        this.fired = false;
+        this.shooting = false;
         this.x = 0;
         this.y = 0;
     }
 
-    fire(paddle1, paddle2) {
+    position(paddle1, paddle2) {
         if (this.direction === -1) {
             const p1Walls = paddle1.getCoordinates();
             this.x = p1Walls.left - this.width * 2;
@@ -35,11 +35,21 @@ export default class Shot {
             this.x = p2Walls.right + this.width;
             this.y = (p2Walls.bottom + p2Walls.top) / 2;
         };
-        this.fired = true;
+        this.shooting = true;
     }
 
-    isFired() {
-        return this.fired;
+    check() {
+        return this.shooting;
+    }
+
+    wallCollision(paddle1, paddle2) {
+        const hitLeft = (this.x - this.width / 2 < 0);
+        const hitRight = (this.x + this.width / 2 > this.boardWidth)
+        if (hitLeft) {
+            this.reset();
+        } else if (hitRight) {
+            this.reset();
+        }
     }
 
     paddleAttack(paddle1, paddle2) {
@@ -77,9 +87,9 @@ export default class Shot {
         this.paddleAttack(paddle1, paddle2, score);
         svg.appendChild(shot);
         shot.style.display = "none";
-        if (this.isFired()) {
+        if (this.check()) {
             shot.style.display = "block";
-            this.shotMove();
+            this.fireMove();
         }
     }
 }

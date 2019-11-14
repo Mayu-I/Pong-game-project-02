@@ -45,9 +45,9 @@ export default class Game {
         this.ball1.reset();
         this.ball2.reset();
       } else if (event.key === KEYS.p1Shot) {
-        this.shot1.fire(this.paddle1, this.paddle2);
+        this.shot1.position(this.paddle1, this.paddle2);
       } else if (event.key === KEYS.p2Shot) {
-        this.shot2.fire(this.paddle1, this.paddle2);
+        this.shot2.position(this.paddle1, this.paddle2);
       }
     });
   }

@@ -1,5 +1,5 @@
 import { SVG_NS } from '../settings';
-import PingSound from '../../public/sounds/pong-01.wav';
+import PingSound from '../../public/sounds/pong-03.wav';
 
 export default class Ball {
     constructor(boardWidth, boardHeight, paddleGap, paddleWidth, color) {
