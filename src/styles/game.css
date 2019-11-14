@@ -77,6 +77,8 @@ body {
   height: 100vh;
   justify-content: center;
   width: 100%;
+  background-color: #010101;
+  color: #ffffff;
 }
 
 h1 {

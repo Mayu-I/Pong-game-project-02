@@ -51,10 +51,34 @@ export default class Paddle {
         this.score += 1;
     }
     decreaseScore() {
-        // if (this.score > 0) {
-        this.score -= 1;
-        // }
+        if (this.score > 0) {
+            this.score -= 1;
+        }
+        this.x -= 3;
+        setTimeout(() => {
+            this.x += 3;
+        }, 50);
+        setTimeout(() => {
+            this.x -= 3;
+        }, 100);
+        setTimeout(() => {
+            this.x += 3;
+        }, 150);
     }
+    /*
+    shaking() {
+        this.x -= 5;
+        setTimeout(() => {
+            this.x += 5;
+        }, 50);
+        setTimeout(() => {
+            this.x -= 5;
+        }, 150);
+        setTimeout(() => {
+            this.x += 5;
+        }, 200);
+    }
+    */
     getScore() {
         return this.score;
     }

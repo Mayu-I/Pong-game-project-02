@@ -5,6 +5,7 @@ import Ball from './Ball';
 import Score from './Score';
 import Shot from './Shot';
 import Winner from './Winner';
+import FireSound from '../../public/sounds/shot.wav';
 
 export default class Game {
   constructor(element, width, height) {
@@ -25,8 +26,9 @@ export default class Game {
     this.score1 = new Score(this.width / 2 + 35, SCORE_Y, SCORE_FONT);
     this.score2 = new Score(this.width / 2 - 60, SCORE_Y, SCORE_FONT);
 
-    this.shot1 = new Shot(SHOT_WIDTH, SHOT_HEIGHT, -1, KEYS.p1Shot, KEYS.p2Shot);
-    this.shot2 = new Shot(SHOT_WIDTH, SHOT_HEIGHT, 1, KEYS.p1Shot, KEYS.p2Shot);
+    this.shot1 = new Shot(this.width, SHOT_WIDTH, SHOT_HEIGHT, -1, KEYS.p1Shot, KEYS.p2Shot);
+    this.shot2 = new Shot(this.width, SHOT_WIDTH, SHOT_HEIGHT, 1, KEYS.p1Shot, KEYS.p2Shot);
+    this.shotSound = new Audio(FireSound);
 
     this.winner1 = new Winner(this.width / 2 + 85, (this.height + 35) / 2, WINNER_FONT);
     this.winner2 = new Winner((this.width / 2) - (85 * 2), (this.height + 35) / 2, WINNER_FONT);
@@ -46,8 +48,12 @@ export default class Game {
         this.ball2.reset();
       } else if (event.key === KEYS.p1Shot) {
         this.shot1.position(this.paddle1, this.paddle2);
+        this.shotSound.loop = false;
+        this.shotSound.play();
       } else if (event.key === KEYS.p2Shot) {
         this.shot2.position(this.paddle1, this.paddle2);
+        this.shotSound.loop = false;
+        this.shotSound.play();
       }
     });
   }
@@ -59,7 +65,7 @@ export default class Game {
       return;
     }
 
-    if (this.paddle1.getScore() >= 5 || this.paddle2.getScore() >= 5) {
+    if (this.paddle1.getScore() >= 10 || this.paddle2.getScore() >= 10) {
       this.paused = !this.paused;
     }
 
@@ -79,7 +85,7 @@ export default class Game {
     this.ball1.render(svg, this.paddle1, this.paddle2);
 
     /* make second ball after get 2 points*/
-    if (this.paddle1.getScore() >= 2 || this.paddle2.getScore() >= 2) {
+    if (this.paddle1.getScore() >= 5 || this.paddle2.getScore() >= 5) {
       this.ball2.render(svg, this.paddle1, this.paddle2);
     }
 

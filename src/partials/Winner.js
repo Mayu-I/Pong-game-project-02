@@ -18,7 +18,7 @@ export default class Winner {
         winnerText.setAttributeNS(null, "font-size", this.size);
         winnerText.textContent = "Win!";
         winnerText.style.display = "none";
-        if (score >= 5 && score < 6) {
+        if (score >= 10 && score < 11) {
             this.sound.loop = false;
             this.sound.play();
             winnerText.style.display = "block";

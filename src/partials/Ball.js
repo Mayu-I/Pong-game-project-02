@@ -20,7 +20,7 @@ export default class Ball {
     }
 
     reset() {
-        this.radius = 9 + Math.floor(Math.random() * 5);
+        this.radius = 8 + Math.floor(Math.random() * 5);
         this.x = this.boardWidth / 2;
         this.y = this.boardHeight / 2;
         this.vy = 0;
@@ -63,8 +63,14 @@ export default class Ball {
             checkBottom = (this.y + this.radius <= p2Walls.bottom);
         }
         if (hitWall && checkTop && checkBottom) {
+            // if (this.vx > 0) {
+            //     paddle1.shaking();
+            // } else {
+            //     paddle2.shaking();
+            // }
             this.sound.play();
             this.vx = this.vx * -1;
+
         }
     }
 

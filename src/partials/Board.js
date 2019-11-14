@@ -1,4 +1,4 @@
-import { SVG_NS, BOARD_COLOR } from '../settings';
+import { SVG_NS, BOARD_COLOR, BOARD_STROKE } from '../settings';
 
 export default class Board {
     constructor(width, height) {
@@ -11,6 +11,8 @@ export default class Board {
         rect.setAttributeNS(null, "height", this.height);
         rect.setAttributeNS(null, "x", 0);
         rect.setAttributeNS(null, "y", 0);
+        rect.setAttributeNS(null, "stroke", BOARD_STROKE);
+        rect.setAttributeNS(null, "stroke-width", 3);
         rect.setAttributeNS(null, "fill", BOARD_COLOR);
 
         const line = document.createElementNS(SVG_NS, "line");

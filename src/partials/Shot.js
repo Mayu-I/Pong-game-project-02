@@ -1,17 +1,18 @@
 import { SVG_NS } from '../settings';
-import FireSound from '../../public/sounds/pong-02.wav';
+import AttackSound from '../../public/sounds/pong-02.wav';
 
 export default class Shot {
-    constructor(width, height, direction, shot1Key, shot2Key) {
+    constructor(boardWidth, width, height, direction, shot1Key, shot2Key) {
+        this.boardWidth = boardWidth;
         this.width = width;
         this.height = height;
         this.direction = direction;
         this.shot1Key = shot1Key;
         this.shot2Key = shot2Key;
-        this.speed = 5;
+        this.speed = 7;
         this.x = 0;
         this.y = 0;
-        this.sound = new Audio(FireSound);
+        this.sound1 = new Audio(AttackSound);
         this.shooting = false;
     }
 
@@ -42,7 +43,7 @@ export default class Shot {
         return this.shooting;
     }
 
-    wallCollision(paddle1, paddle2) {
+    wallCollision() {
         const hitLeft = (this.x - this.width / 2 < 0);
         const hitRight = (this.x + this.width / 2 > this.boardWidth)
         if (hitLeft) {
@@ -67,11 +68,11 @@ export default class Shot {
         }
 
         if (hitLeft && checkTop && checkBottom) {
-            this.sound.play();
+            this.sound1.play();
             paddle1.decreaseScore();
             this.reset();
         } else if (hitRight && checkTop && checkBottom) {
-            this.sound.play();
+            this.sound1.play();
             paddle2.decreaseScore();
             this.reset();
         }
@@ -84,6 +85,7 @@ export default class Shot {
         shot.setAttributeNS(null, "x", this.x);
         shot.setAttributeNS(null, "y", this.y);
         shot.setAttributeNS(null, "fill", "#ffffff");
+        this.wallCollision();
         this.paddleAttack(paddle1, paddle2, score);
         svg.appendChild(shot);
         shot.style.display = "none";
