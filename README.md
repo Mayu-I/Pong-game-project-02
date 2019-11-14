@@ -1,11 +1,12 @@
 # Fun Fun Pong Game⭐️
 
-A pong game for a second project
+A pong game for a second webdev project
 
 ## DEMO
 
 ## Features
-You can play with two players.
+
+Two players can play.
 
 First to get 10 points wins. 
 
@@ -15,9 +16,9 @@ Ball's size are changing every time balls are made.
 
 ## How to play
 
-	- 'r' key restarts game
+	 'r' key restarts game
 
-	- 'space' key pauses game
+	 'space' key pauses game
   
 Left Player :
       
@@ -34,3 +35,7 @@ Right player :
 	- 'DOWN Arrow' key moves the paddle downside
   
 	- 'LEFT Arrow' key shots fire
+
+## Author
+
+Mayu Imanaka
