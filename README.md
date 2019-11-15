@@ -4,7 +4,7 @@ A pong game for a second webdev project!
 
 ## DEMO
 
-![Pong](https://user-images.githubusercontent.com/42310122/68905496-422a2080-06f6-11ea-96c3-f498405c8671.png)
+![Pong](https://user-images.githubusercontent.com/42310122/68911236-1f553780-0709-11ea-9f83-2ededc0d91ea.png)
 
 
 ## Features
