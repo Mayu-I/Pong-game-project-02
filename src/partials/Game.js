@@ -1,4 +1,4 @@
-import { SVG_NS, PADDLE_HEIGHT, PADDLE_Y, PADDLE_WIDTH, PADDLE_GAP, PADDLE_SPEED, KEYS, SCORE_FONT, SCORE_Y, WINNER_FONT, WINNER_SCORE, SHOT_WIDTH, SHOT_HEIGHT } from '../settings';
+import { SVG_NS, PADDLE_HEIGHT, PADDLE_Y, PADDLE_WIDTH, PADDLE_GAP, PADDLE_SPEED, KEYS, SCORE_FONT, SCORE_Y, WINNER_FONT, SHOT_WIDTH, SHOT_HEIGHT } from '../settings';
 import Board from './Board';
 import Paddle from './Paddle';
 import Ball from './Ball';
@@ -12,7 +12,7 @@ export default class Game {
     this.element = element;
     this.width = width;
     this.height = height;
-    this.winnerScore = WINNER_SCORE;
+    // this.winner1.changeWinscore() = WINNER_SCORE;
     this.gameElement = document.getElementById(this.element);
     this.bgElement = document.getElementById(this.bg);
     this.board = new Board(this.width, this.height);
@@ -31,8 +31,8 @@ export default class Game {
     this.shot2 = new Shot(this.width, SHOT_WIDTH, SHOT_HEIGHT, 1, KEYS.p1Shot, KEYS.p2Shot);
     this.shotSound = new Audio(FireSound);
 
-    this.winner1 = new Winner(this.width / 2 + 85, (this.height + 35) / 2, WINNER_FONT, WINNER_SCORE);
-    this.winner2 = new Winner((this.width / 2) - (85 * 2), (this.height + 35) / 2, WINNER_FONT, WINNER_SCORE);
+    this.winner1 = new Winner(this.width / 2 + 85, (this.height + 35) / 2, WINNER_FONT);
+    this.winner2 = new Winner((this.width / 2) - (85 * 2), (this.height + 35) / 2, WINNER_FONT);
 
     document.addEventListener("keydown", (event) => {
       if (event.key === KEYS.pause) {
@@ -47,6 +47,8 @@ export default class Game {
         this.paddle2.reset();
         this.ball1.reset();
         this.ball2.reset();
+        this.winner1.reset();
+        this.winner2.reset();
       } else if (event.key === KEYS.p1Shot) {
         this.shot1.position(this.paddle1, this.paddle2);
         this.shotSound.loop = false;
@@ -66,8 +68,12 @@ export default class Game {
       return;
     }
 
-    if (this.paddle1.getScore() >= this.winnerScore || this.paddle2.getScore() >= this.winnerScore) {
+    if (this.paddle1.getScore() >= this.winner1.changeWinscore() || this.paddle2.getScore() >= this.winner1.changeWinscore()) {
       this.paused = !this.paused;
+    }
+
+    if (!this.winner1.changeWinscore() === 0 && this.paddle1.getScore() <= this.winner1.changeWinscore() && this.paddle2.getScore() <= this.winner1.changeWinscore()) {
+      this.paused = false;
     }
 
     this.gameElement.innerHTML = '';
@@ -86,7 +92,7 @@ export default class Game {
     this.ball1.render(svg, this.paddle1, this.paddle2);
 
     /* make second ball after get 2 points*/
-    if (this.paddle1.getScore() >= this.winnerScore / 2 || this.paddle2.getScore() >= this.winnerScore / 2) {
+    if (this.paddle1.getScore() >= this.winner1.changeWinscore() / 2 || this.paddle2.getScore() >= this.winner1.changeWinscore() / 2) {
       this.ball2.render(svg, this.paddle1, this.paddle2);
     }
 

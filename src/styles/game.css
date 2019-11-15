@@ -101,7 +101,7 @@ p span{
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .score{
@@ -130,9 +130,19 @@ p span{
   color: #ffffff;
   vertical-align: middle;
   padding-top: 3px;
+  border-radius: 30px;
 }
 
 .scoreBtn:focus{
   outline: none;
+}
 
+h3{
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  text-decoration-line: underline;
+}
+
+h3 span{
+  color: #FCDA4B;
 }

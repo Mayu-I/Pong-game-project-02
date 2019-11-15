@@ -17,7 +17,7 @@ export const SCORE_FONT = 30;
 export const SCORE_Y = 50;
 
 export const WINNER_FONT = 40;
-export const WINNER_SCORE = 10;
+// export const WINNER_SCORE = 10;
 
 export const KEYS = {
     p1Up: "ArrowUp",
