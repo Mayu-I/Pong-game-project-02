@@ -9,15 +9,15 @@ A pong game for a second webdev project!
 
 ## Features
 
-- Two players can play👬.
+- Two players can play👬
 
-- First to get 10 points wins🙌. 
+- Set points by yourselves🙌
 
-- You can reduce another player's points by shooting fire🔥.
+- You can reduce another player's points by shooting fire🔥
 
-- Ball's size are changing every time balls are made🎾.
+- Ball's size are changing every time balls are made🎾
 
-- After any one of players reached 5 points, number of balls are increased😲. 
+- After any one of players reached half points, number of balls are increased😲
 
 ## How to play
 
