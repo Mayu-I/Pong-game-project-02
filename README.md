@@ -1,6 +1,6 @@
 # Fun Fun Pong Game⭐️
 
-A pong game for a second webdev project!
+A pong game by using Javascript
 
 ## DEMO
 
